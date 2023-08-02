@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/BalascanGabriel/NodeJS-Start/issues"
   },
-  "homepage": "https://github.com/BalascanGabriel/NodeJS-Start#readme"
+  "homepage": "https://github.com/BalascanGabriel/NodeJS-Start#readme",
+  "dependencies": {
+    "nodemon": "^3.0.1"
+  }
 }

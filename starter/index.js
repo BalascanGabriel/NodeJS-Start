@@ -1,6 +1,6 @@
 ///require fs which stands for file-system -> fs is a module
 const http = require('http'); // Import the 'http' module to create an HTTP server
-const url = require('url'); // Import the 'url' module to handle URLs
+const URL = require('url'); // Import the 'url' module to handle URLs
 const fs = require('fs'); // Import the 'fs' module to read files
 const replaceTemplate = require('./modules/replaceTemplate');
 ////////////////
@@ -55,7 +55,19 @@ const dataObj = JSON.parse(data);
 
 // Create an HTTP server using 'http.createServer(callback)'
 const server = http.createServer((req, res) => {
-  const { query, pathname } = url.parse(req.url, true); // Parse the request URL and extract 'query' and 'pathname'
+    //localhost:3000/api/as/ds/overview?a=b&c=d
+    /*
+        {
+            query: {
+                a:'b',
+                c:'d'
+            },
+            params: {
+                pathname: '/api/as/ds/overview'
+            }
+        }
+    */
+  const { query, pathname } = URL.parse(req.url, true); // Parse the request URL and extract 'query' and 'pathname'
 
   // Overview page
  // Handle Overview page ('/' or '/overview')
@@ -85,7 +97,8 @@ if (pathname === '/' || pathname === '/overview') {
     const product = dataObj[query.id];
 
     // Generate the HTML for the specific product using 'replaceTemplate()' function and 'tempProduct' template
-    const output = replaceTemplate(tempProduct, product);
+     const output = replaceTemplate(tempProduct, product);
+    //const output = tempProduct;
 
     // Send the final HTML as the response using 'res.end(output)'
     res.end(output);
