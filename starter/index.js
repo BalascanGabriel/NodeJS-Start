@@ -58,22 +58,25 @@ const server = http.createServer((req, res) => {
   const { query, pathname } = url.parse(req.url, true); // Parse the request URL and extract 'query' and 'pathname'
 
   // Overview page
-  if (pathname === '/' || pathname === '/overview') {
+ // Handle Overview page ('/' or '/overview')
+if (pathname === '/' || pathname === '/overview') {
     res.writeHead(200, {
       'Content-type': 'text/html' // Set the response content type to 'text/html'
     });
-
+  
     // Generate the HTML for product cards using 'dataObj' and 'replaceTemplate()' function
+    // Map through each product 'el' in 'dataObj' and generate HTML for each product card
     const cardsHtml = dataObj.map(el => replaceTemplate(tempCard, el)).join('');
-
+  
     // Replace the '{%PRODUCT_CARDS%}' placeholder in the 'tempOverview' template with the generated HTML
+    // The placeholder '{%PRODUCT_CARDS%}' in 'tempOverview' template will be replaced by the concatenated 'cardsHtml'
     const output = tempOverview.replace('{%PRODUCT_CARDS%}', cardsHtml);
-
+  
     // Send the final HTML as the response using 'res.end(output)'
+    // The 'output' contains the complete HTML with product cards, which will be sent to the client
     res.end(output);
-
-  // Product page
-  } else if (pathname === '/product') {
+  }//Products Page
+   else if (pathname === '/product') {
     res.writeHead(200, {
       'Content-type': 'text/html' // Set the response content type to 'text/html'
     });

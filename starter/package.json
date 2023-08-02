@@ -1,0 +1,19 @@
+{
+  "name": "node-fresh-market",
+  "version": "1.0.0",
+  "description": "Learning node and developing a freshfull market app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BalascanGabriel/NodeJS-Start.git"
+  },
+  "author": "Balascan Gabriel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BalascanGabriel/NodeJS-Start/issues"
+  },
+  "homepage": "https://github.com/BalascanGabriel/NodeJS-Start#readme"
+}
