@@ -53,5 +53,60 @@
     "price": "2.00",
     "organic": false,
     "description": "Also known as maize, corn is one of the most popular cereal grains in the world. Popcorn and sweet corn are commonly eaten varieties, but refined corn products are also widely consumed, frequently as ingredients in foods. These include tortillas, tortilla chips, polenta, cornmeal, corn flour, corn syrup, and corn oil. Whole-grain corn is as healthy as any cereal grain, rich in fiber and many vitamins, minerals, and antioxidants."
+  },
+  {
+    "id": 5,
+    "productName": "Fresh Strawberries",
+    "image": "🍓",
+    "from": "USA",
+    "nutrients": "Vitamin C, Manganese",
+    "quantity": "500g",
+    "price": "4.50",
+    "organic": true,
+    "description": "Strawberries are a sweet and juicy fruit known for their bright red color and delicious taste. They are packed with antioxidants and vitamin C, making them a popular and healthy choice. Strawberries can be enjoyed fresh, added to smoothies, used in desserts, or simply eaten as a tasty snack."
+  },
+  {
+    "id": 6,
+    "productName": "Fresh Salmon Fillet",
+    "image": "🐟",
+    "from": "Norway",
+    "nutrients": "Omega-3 Fatty Acids, Protein",
+    "quantity": "200g",
+    "price": "8.00",
+    "organic": false,
+    "description": "Salmon is a popular fish known for its rich flavor and health benefits. It is an excellent source of omega-3 fatty acids, which are essential for heart health. Salmon can be prepared in various ways, such as grilling, baking, or pan-searing, making it a versatile and delicious choice for seafood lovers."
+  },
+  {
+    "id": 7,
+    "productName": "Fresh Peaches",
+    "image": "🍑",
+    "from": "Italy",
+    "nutrients": "Vitamin A, Vitamin C",
+    "quantity": "500g",
+    "price": "5.00",
+    "organic": true,
+    "description": "Peaches are juicy and flavorful fruits known for their sweet taste and fuzzy skin. They are rich in vitamins A and C, which are essential for skin health and immunity. Peaches can be enjoyed fresh, used in desserts, added to salads, or blended into smoothies."
+  },
+  {
+    "id": 8,
+    "productName": "Organic Quinoa",
+    "image": "🍚",
+    "from": "Bolivia",
+    "nutrients": "Protein, Fiber",
+    "quantity": "1kg",
+    "price": "10.00",
+    "organic": true,
+    "description": "Quinoa is a grain crop known for its high protein content and numerous health benefits. It is gluten-free, rich in fiber, and contains essential amino acids. Quinoa can be cooked and used as a base for salads, added to soups, or enjoyed as a side dish."
+  },
+  {
+    "id": 9,
+    "productName": "Ripe Mangoes",
+    "image": "🥭",
+    "from": "India",
+    "nutrients": "Vitamin A, Vitamin C",
+    "quantity": "3 🥭",
+    "price": "4.00",
+    "organic": false,
+    "description": "Mangoes are tropical fruits known for their sweet and juicy flesh. They are rich in vitamins A and C, providing numerous health benefits. Mangoes can be eaten fresh, blended into smoothies, or used in various desserts and salads."
   }
 ]
