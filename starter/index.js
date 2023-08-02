@@ -52,6 +52,7 @@ const tempProduct = fs.readFileSync(`${__dirname}/templates/template-product.htm
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
 const dataObj = JSON.parse(data);
 
+
 // Create an HTTP server using 'http.createServer(callback)'
 const server = http.createServer((req, res) => {
   const { query, pathname } = url.parse(req.url, true); // Parse the request URL and extract 'query' and 'pathname'
