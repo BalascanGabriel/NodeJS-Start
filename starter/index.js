@@ -44,76 +44,54 @@ const replaceTemplate = require('./modules/replaceTemplate');
 
 
 // Read the contents of HTML template files
-const tempOverview = fs.readFileSync(`${__dirname}/templates/template-overview.html`, 'utf-8');
-const tempCard = fs.readFileSync(`${__dirname}/templates/template-card.html`, 'utf-8');
-const tempProduct = fs.readFileSync(`${__dirname}/templates/template-product.html`, 'utf-8');
+const templateOverview = fs.readFileSync(`${__dirname}/templates/template-overview.html`, 'utf-8');
+const templateCard = fs.readFileSync(`${__dirname}/templates/template-card.html`, 'utf-8');
+const templateProduct = fs.readFileSync(`${__dirname}/templates/template-product.html`, 'utf-8');
 
 // Read the contents of 'data.json' file and parse it into a JavaScript object
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
 const dataObj = JSON.parse(data);
 
-
 // Create an HTTP server using 'http.createServer(callback)'
 const server = http.createServer((req, res) => {
-    //localhost:3000/api/as/ds/overview?a=b&c=d
-    /*
-        {
-            query: {
-                a:'b',
-                c:'d'
-            },
-            params: {
-                pathname: '/api/as/ds/overview'
-            }
-        }
-    */
   const { query, pathname } = URL.parse(req.url, true); // Parse the request URL and extract 'query' and 'pathname'
 
   // Overview page
- // Handle Overview page ('/' or '/overview')
-if (pathname === '/' || pathname === '/overview') {
+  // Handle Overview page ('/' or '/overview')
+  if (pathname === '/' || pathname === '/overview') {
+    //Trebuie sa tranformam fiecare card in template si sa il punem unde era div-ul din overview -> {%PRODUCT_CARDS%}
+    //Raspunsul e html
     res.writeHead(200, {
-      'Content-type': 'text/html' // Set the response content type to 'text/html'
+      'Content-type': 'text/html'
     });
-  
-    // Generate the HTML for product cards using 'dataObj' and 'replaceTemplate()' function
-    // Map through each product 'el' in 'dataObj' and generate HTML for each product card
-    const cardsHtml = dataObj.map(el => replaceTemplate(tempCard, el)).join('');
-  
-    // Replace the '{%PRODUCT_CARDS%}' placeholder in the 'tempOverview' template with the generated HTML
-    // The placeholder '{%PRODUCT_CARDS%}' in 'tempOverview' template will be replaced by the concatenated 'cardsHtml'
-    const output = tempOverview.replace('{%PRODUCT_CARDS%}', cardsHtml);
-  
-    // Send the final HTML as the response using 'res.end(output)'
-    // The 'output' contains the complete HTML with product cards, which will be sent to the client
+    //Generam cartile intr-o variabila folosind funtia replaceTemplate
+    //Ce luam din JSON tranformam cu functia
+    //pentru fiecare element din dataObj care are json-ul il inlocuim cu template-ul html
+    const cardsHtml = dataObj.map(element => replaceTemplate(templateCard, element));
+    //Si acum inlocuim ce era in html cu  {%PRODUCT_CARDS%} fix cu cartile transformate
+    const output = templateOverview.replace('{%PRODUCT_CARDS%}',cardsHtml);
     res.end(output);
-  }//Products Page
-   else if (pathname === '/product') {
-    res.writeHead(200, {
-      'Content-type': 'text/html' // Set the response content type to 'text/html'
+  }
+  //Cazul pentru endpoint /product
+  else if(pathname === '/product'){
+    //E tot raspuns HTML
+    res.writeHead(200,{
+      'Content-type' : 'text/html'
     });
-
-    // Extract the 'query.id' parameter from the URL to identify the specific product
+    //Trebuie sa luam id-ul din query
     const product = dataObj[query.id];
-
-    // Generate the HTML for the specific product using 'replaceTemplate()' function and 'tempProduct' template
-     const output = replaceTemplate(tempProduct, product);
-    //const output = tempProduct;
-
-    // Send the final HTML as the response using 'res.end(output)'
+    const output = replaceTemplate(templateProduct,product);
     res.end(output);
 
-  // API Endpoint
-  } else if (pathname === '/api') {
-    res.writeHead(200, {
-      'Content-type': 'application/json' // Set the response content type to 'application/json'
+  }
+  //Just to get the json data
+  else if(pathname === '/api'){
+    res.writeHead(200,{
+      'Content-type':'application/json'
     });
-
-    // Send the entire 'data' (JSON data from 'data.json') as the response using 'res.end(data)'
     res.end(data);
-
-  // Not found (Any other URL)
-  } else {
+  }
+  else{
     res.writeHead(404, {
       'Content-type': 'text/html', // Set the response content type to 'text/html'
       'my-own-header': 'hello-world' // Set a custom header 'my-own-header' with the value 'hello-world'
@@ -122,6 +100,8 @@ if (pathname === '/' || pathname === '/overview') {
     // Send an HTML message saying "Page not found!" as the response using 'res.end()'
     res.end('<h1>Page not found!</h1>');
   }
+
+
 });
 
 // Start the server and listen on port 8000 and the IP address 127.0.0.1 (localhost)
