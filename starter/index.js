@@ -3,6 +3,12 @@ const http = require('http'); // Import the 'http' module to create an HTTP serv
 const URL = require('url'); // Import the 'url' module to handle URLs
 const fs = require('fs'); // Import the 'fs' module to read files
 const replaceTemplate = require('./modules/replaceTemplate');
+const slugify = require('slugify');
+//Slugify creates 'slugs', slugs are the last part of the url with strings care identifica resursa
+//cum ar fi ce e la final dupa / in endpoint
+
+
+
 ////////////////
 //FILES
 
@@ -51,6 +57,18 @@ const templateProduct = fs.readFileSync(`${__dirname}/templates/template-product
 // Read the contents of 'data.json' file and parse it into a JavaScript object
 const data = fs.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8');
 const dataObj = JSON.parse(data);
+
+const slugs = dataObj.map(element =>{
+  return slugify(element.productName,{
+    lower:true
+  });
+});
+
+console.log(slugs);
+
+console.log(slugify('Fresh Avocados',{
+  lower: true
+}));
 
 // Create an HTTP server using 'http.createServer(callback)'
 const server = http.createServer((req, res) => {
